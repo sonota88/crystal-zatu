@@ -1,0 +1,12 @@
+src_files = []
+Dir.glob("src/**/*.cr").each { |path|
+  src_files << path
+}
+
+task :default => :build
+
+task :build => ["bin/main"]
+
+file "bin/main" => src_files do
+  sh %(./run.sh build)
+end
